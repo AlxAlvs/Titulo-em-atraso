@@ -1,0 +1,31 @@
+Instruções:
+
+1 - abrir o microsoft sql manager, criar um banco de dados chamado "Titulos" executando o seguinte script:
+
+CREATE DATABASE Titulos;
+
+CREATE TABLE tituloEmAtraso(
+   TituloEmAtrasoId UNIQUEIDENTIFIER PRIMARY KEY,
+   Numero int NOT NULL,
+   DevedorNome VARCHAR (50) NOT NULL,
+   DevedorCPF VARCHAR (50) NOT NULL,
+   PorcentagemJuros float NOT NULL,
+   PorcentagemMulta float NOT NULL,
+ );
+
+  CREATE TABLE parcela(
+   ParcelaId UNIQUEIDENTIFIER PRIMARY KEY,
+   Numero int NOT NULL,
+   DataDeVencimento smalldatetime NOT NULL,
+   Valor float NOT NULL,
+   TituloEmAtrasoId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES tituloEmAtraso(TituloEmAtrasoId),
+ );
+
+(se deseja ter registros para testes execute os inserts a seguir)
+ insert into tituloEmAtraso values ('848462e0-c880-4c39-ae5c-d9abf5a4c40c', 1, 'devedor 1', '90642716072', 1, 2);
+ insert into parcela values ('3c2ea57d-419f-4075-9360-075ac10713db', 1, '2020-07-12 22:12:58.990', 100, '848462e0-c880-4c39-ae5c-d9abf5a4c40c');
+
+2 - abrir a aplicação da pasta web api no visual studio (WebApi.sln), editar o arquivo appsettings.json com a conexão do server do seu banco de dados(em DefaultConnection). executar a aplicação.
+3 - abrir no editor de texto a aplicação da pasta frontend executar a aplicação angular com o comando "ng serve".
+4 - acessar o sistema pelo navegador em http://localhost:4200/
+ 

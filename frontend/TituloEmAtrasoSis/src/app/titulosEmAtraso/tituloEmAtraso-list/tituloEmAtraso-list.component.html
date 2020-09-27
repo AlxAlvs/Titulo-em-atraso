@@ -1,0 +1,21 @@
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <td>Número</td>
+        <td>Nome do devedor</td>
+        <td>Quantidade de parcelas</td>
+        <td>Dias em atraso</td>
+        <td>Valor atualizado na data de hoje</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let TituloEmAtraso of TituloEmAtrasos">
+        <td>{{TituloEmAtraso.numero}}</td>
+        <td>{{TituloEmAtraso.devedorNome}}</td>
+        <td>{{TituloEmAtraso.parcelasDaDivida.length}}</td>
+        <td>{{TituloEmAtraso.diasEmAtraso}}</td>
+        <td>{{TituloEmAtraso.valorAtualizadoParaExibir}}</td>      
+      </tr>
+    </tbody>
+  </table>
+  

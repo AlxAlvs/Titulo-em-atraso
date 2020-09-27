@@ -1,0 +1,70 @@
+<h1>Cadastrar Título em atraso</h1>
+<form [formGroup]="formulario">
+    <div class="form-group col-md-3">
+      <label for="numero">Número</label>
+      <input type="number" maxlength="50" formControlName="numero" class="form-control" id="numero">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="devedorNome">Nome do devedor</label>
+        <input type="text" maxlength="50" formControlName="devedorNome" class="form-control" id="devedorNome">
+      </div>
+    <div class="form-group col-md-3">
+      <label for="devedorCPF">CPF do devedor</label>
+      <input type="text" maxlength="11" formControlName="devedorCPF" class="form-control" id="devedorCPF">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="porcentagemJuros">Porcentagem de juros</label>
+        <input
+          type="number" max="999" min="1" formControlName="porcentagemJuros" class="form-control" id="porcentagemJuros" maxlength="7"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        >
+    </div>
+    <div class="form-group col-md-3">
+      <label for="porcentagemMulta">Porcentagem de multa</label>
+      <input
+        type="number" max="999" min="1" formControlName="porcentagemMulta" class="form-control" id="porcentagemMulta" maxlength="7"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+      >
+    </div>
+    <div class="form-group col-md-12">
+      <hr/>
+      Parcelas
+    </div>
+    <div class="form-group col-md-2">
+      <label for="numeroParcela">Número da parcela</label>
+      <input type="number" maxlength="50" formControlName="numeroParcela" class="form-control" id="numeroParcela">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="dataDeVencimento">Data de vencimento</label>
+      <input type="date" formControlName="dataDeVencimento" class="form-control" id="dataDeVencimento">
+    </div>
+    <div class="form-group col-md-2">
+      <label for="valor">Valor da parcela</label>
+      <input
+       type="number" min="1" formControlName="valor" class="form-control" id="valor" maxlength="20"
+       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+      >
+    </div>
+    <div class="col-md-12" style="margin-top: 15px; margin-bottom: 15px;">
+      <button class="btn" (click)="adicionarParcela()">Adicionar Parcela</button>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <td>Número da parcela</td>
+          <td>Data de vencimento</td>
+          <td>Valor da parcela</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let parcela of Parcelas">
+          <td>{{parcela.numero}}</td>
+          <td>{{parcela.dataDeVencimento}}</td>
+          <td>{{parcela.valor}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="col-md-12" style="margin-top: 15px;">
+      <button type="submit" (click)="criar()" class="btn btn-primary">Cadastrar título em atraso</button>
+    </div>
+</form>
